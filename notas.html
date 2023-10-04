@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            display: flex;
+            justify-content: space-around;
+            color: #FFF;
+            font-size: 1.4em;
+            background-color: rgb(22, 193, 22);
+        }
+        i{
+            font-size: 2.8em;
+            cursor: pointer;
+        }
+        body{
+            background-color: rgb(188, 188, 188);
+        }
+        main{
+            height: 70vh;
+            background-color: rgb(234, 235, 236);
+            margin-top: 2%;
+            margin-inline: 10%;
+            border: black 2px solid;
+            border-radius: 5px;
+            
+            align-items: center;
+            font-size: 1.2em;
+        }
+        input{
+            margin-top: 2%;
+        }
+        .notas{
+           position: absolute;
+           top: 20%;
+           left: 50%;
+           transform: translateY(-20%) translateX(-50%);
+        }
+        input[type=submit]{
+            padding: 2%;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            background-color: rgb(22, 193, 22);
+        }
+        #resul{
+            margin-top: 2%;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <i>&#8801;</i>
+       <h1>Notas do Aluno</h1>
+       <i><img src="./img/icons8-lupa-50.png" alt="" height="40" width="40"></i>
+    </header>
+    
+    <main>
+        <div class="notas">
+            <label for="nota1">Nota do 1º Trimestre</label>
+            <input type="text" id="nota1" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /><br>
+            <label for="nota2">Nota do 2º Trimestre</label>
+            <input type="text" id="nota2" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /><br>
+            <label for="nota3">Nota do 3º Trimestre</label>
+            <input type="text" id="nota3" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" /><br>
+        
+            <input type="submit" id="enviar" value="Enviar">
+            <div id="resul"></div>
+        </div> 
+    </main>
+    <script>
+        
+
+        document.getElementById('enviar').addEventListener('click', calc)
+
+        function calc(){
+        var resul = document.getElementById('resul');
+        var n1 = Number(document.getElementById('nota1').value);
+        var n2 = Number(document.getElementById('nota2').value);
+        var n3 = Number(document.getElementById('nota3').value);
+
+        var nota = ((n1+n2+n3)/3).toFixed(1);
+
+        if(nota>=6){
+        resul.innerHTML = "A média final foi "+(nota)+" Aluno Aprovado!!!";
+        }else if(nota>=4){
+        resul.innerHTML = "A média final foi "+(nota)+" Aluno está em Recuperação";
+        }else{
+        resul.innerHTML = "A média final foi "+(nota)+" Aluno Reprovado"; 
+        }
+    }
+    
+    </script>
+</body>
+</html>
